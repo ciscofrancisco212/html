@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Chamada Escolar com Relatório - Análise de Sistemas</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+             /* Configuração do fundo em degradê */
+    background: linear-gradient(85deg, #10b2b7 0%, #050009 100%);
+            /*background-color: var(--bg-light);*/
+            color: var(--text-dark);
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-stat {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .card-stat span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-stat strong {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+        }
+
+        .form-section, .filter-section, .table-section {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .form-row input[type="text"],
+        .form-row input[type="date"],
+        .form-row select {
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-row input[type="text"] {
+            flex: 2;
+            min-width: 200px;
+        }
+
+        .form-row input[type="date"] {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .form-row input:focus, .form-row select:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-save {
+            background-color: #16a34a;
+            color: white;
+        }
+
+        .btn-save:hover {
+            background-color: #15803d;
+        }
+
+        .btn-print {
+            background-color: #0f172a;
+            color: white;
+        }
+
+        .btn-print:hover {
+            background-color: #334155;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge-presente {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-ausente {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .btn-status {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background-color: #f8fafc;
+            cursor: pointer;
+        }
+
+        .btn-status:hover {
+            background-color: #e2e8f0;
+        }
+
+        .btn-delete {
+            background-color: transparent;
+            color: var(--danger);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+
+        .actions-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .print-header {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .form-section, .filter-section, header, .actions-column {
+                display: none !important;
+            }
+
+            .print-header {
+                display: block;
+                margin-bottom: 20px;
+                border-bottom: 2px solid #000;
+                padding-bottom: 10px;
+            }
+
+            .print-header h1 {
+                font-size: 1.6rem;
+                margin-bottom: 4px;
+            }
+
+            .print-header p {
+                font-size: 0.9rem;
+                color: #333;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .card-stat {
+                border: 1px solid #000;
+                box-shadow: none;
+                padding: 8px;
+            }
+
+            .table-section {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            table {
+                border: 1px solid #000;
+            }
+
+            th, td {
+                border: 1px solid #000;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #e2e8f0 !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .status-badge {
+                border: 1px solid #000;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Sistema de Controle de Frequência Diária</h1>
+            <p>Disciplina: Análise e Projeto de Sistemas | Módulo de Relatório e Exportação</p>
+        </header>
+
+        <div class="print-header">
+            <h1>RELATÓRIO DIÁRIO DE FREQUÊNCIA ESCOLAR</h1>
+            <p><strong>Data de Emissão:</strong> <span id="print-data-emissao"></span> | <strong>Filtro aplicado:</strong> <span id="print-data-filtro"></span></p>
+        </div>
+
+        <!-- Formulário para Registrar Chamada -->
+        <div class="form-section">
+            <h2 style="font-size: 1.1rem; margin-bottom: 12px;">Registrar Chamada</h2>
+            <form id="form-aluno" class="form-row">
+                <input type="text" id="nome-aluno" placeholder="Nome do aluno..." required>
+                <input type="date" id="data-chamada" required>
+                <button type="submit" class="btn btn-primary">Adicionar Registro</button>
+            </form>
+        </div>
+
+        <!-- Seção de Filtro e Ações de Salvar / Imprimir -->
+        <div class="filter-section">
+            <div class="form-row" style="justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <label for="filtro-data"><strong>Filtrar por Data:</strong></label>
+                    <input type="date" id="filtro-data">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" class="btn btn-save" onclick="salvarArquivoJSON()">
+                        💾 Salvar Registro (JSON)
+                    </button>
+                    <button type="button" class="btn btn-print" onclick="gerarRelatorioImpressao()">
+                        🖨️ Imprimir Relatório
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard-grid">
+            <div class="card-stat">
+                <span>Registros no Dia</span>
+                <strong id="total-alunos">0</strong>
+            </div>
+            <div class="card-stat">
+                <span>Presentes</span>
+                <strong id="total-presentes" style="color: var(--success);">0</strong>
+            </div>
+            <div class="card-stat">
+                <span>Ausentes</span>
+                <strong id="total-ausentes" style="color: var(--danger);">0</strong>
+            </div>
+            <div class="card-stat">
+                <span>Taxa de Frequência</span>
+                <strong id="taxa-frequencia">0%</strong>
+            </div>
+        </div>
+
+        <!-- Tabela -->
+        <div class="table-section">
+            <h2 style="font-size: 1.1rem; margin-bottom: 12px;" id="titulo-tabela">Registros de Frequência</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Nome do Aluno</th>
+                        <th>Status</th>
+                        <th class="actions-column">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-alunos">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const hoje = new Date().toISOString().split('T')[0];
+        document.getElementById('data-chamada').value = hoje;
+        document.getElementById('filtro-data').value = hoje;
+
+        let alunos = JSON.parse(localStorage.getItem('alunos_db_relatorio')) || [
+            { id: 101, nome: "Ana Silva", data: "2026-09-14", presente: true },
+            { id: 102, nome: "Carlos Souza", data: "2026-09-14", presente: true },
+            { id: 103, nome: "Beatriz Lima", data: "2026-09-14", presente: false },
+            { id: 201, nome: "Ana Silva", data: hoje, presente: true },
+            { id: 202, nome: "Carlos Souza", data: hoje, presente: false },
+            { id: 203, nome: "Beatriz Lima", data: hoje, presente: true },
+            { id: 204, nome: "João Pedro", data: hoje, presente: true }
+        ];
+
+        const formAluno = document.getElementById('form-aluno');
+        const inputNome = document.getElementById('nome-aluno');
+        const inputData = document.getElementById('data-chamada');
+        const filtroData = document.getElementById('filtro-data');
+        const tabelaAlunos = document.getElementById('tabela-alunos');
+        
+        const elTotal = document.getElementById('total-alunos');
+        const elPresentes = document.getElementById('total-presentes');
+        const elAusentes = document.getElementById('total-ausentes');
+        const elTaxa = document.getElementById('taxa-frequencia');
+
+        function salvarDados() {
+            localStorage.setItem('alunos_db_relatorio', JSON.stringify(alunos));
+            atualizarInterface();
+        }
+
+        // Função para exportar e baixar os registros armazenados
+        function salvarArquivoJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(alunos, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `registros_chamada_${filtroData.value}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        function alternarPresenca(id) {
+            alunos = alunos.map(aluno => {
+                if (aluno.id === id) {
+                    return { ...aluno, presente: !aluno.presente };
+                }
+                return aluno;
+            });
+            salvarDados();
+        }
+
+        function adicionarAluno(nome, data) {
+            const novoAluno = {
+                id: Date.now(),
+                nome: nome,
+                data: data,
+                presente: true
+            };
+            alunos.push(novoAluno);
+            salvarDados();
+        }
+
+        function removerAluno(id) {
+            alunos = alunos.filter(aluno => aluno.id !== id);
+            salvarDados();
+        }
+
+        function formatarDataBR(dataISO) {
+            if(!dataISO) return '';
+            const partes = dataISO.split('-');
+            if(partes.length !== 3) return dataISO;
+            return `${partes[2]}/${partes[1]}/${partes[0]}`;
+        }
+
+        function atualizarInterface() {
+            tabelaAlunos.innerHTML = '';
+            const dataSelecionada = filtroData.value;
+            const alunosFiltrados = alunos.filter(a => a.data === dataSelecionada);
+
+            let totalPresentes = 0;
+
+            if (alunosFiltrados.length === 0) {
+                tabelaAlunos.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum registro para a data ${formatarDataBR(dataSelecionada)}.</td></tr>`;
+            } else {
+                alunosFiltrados.forEach(aluno => {
+                    if (aluno.presente) totalPresentes++;
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>#${aluno.id.toString().slice(-4)}</td>
+                        <td>${formatarDataBR(aluno.data)}</td>
+                        <td><strong>${aluno.nome}</strong></td>
+                        <td>
+                            <span class="status-badge ${aluno.presente ? 'badge-presente' : 'badge-ausente'}">
+                                ${aluno.presente ? 'Presente' : 'Ausente'}
+                            </span>
+                        </td>
+                        <td class="actions-cell actions-column">
+                            <button class="btn-status" onclick="alternarPresenca(${aluno.id})">
+                                Alternar
+                            </button>
+                            <button class="btn-delete" onclick="removerAluno(${aluno.id})" title="Excluir Registro">&times;</button>
+                        </td>
+                    `;
+                    tabelaAlunos.appendChild(tr);
+                });
+            }
+
+            const total = alunosFiltrados.length;
+            const totalAusentes = total - totalPresentes;
+            const taxa = total > 0 ? Math.round((totalPresentes / total) * 100) : 0;
+
+            elTotal.textContent = total;
+            elPresentes.textContent = totalPresentes;
+            elAusentes.textContent = totalAusentes;
+            elTaxa.textContent = `${taxa}%`;
+
+            document.getElementById('print-data-filtro').textContent = formatarDataBR(dataSelecionada);
+            document.getElementById('print-data-emissao').textContent = new Date().toLocaleDateString('pt-BR');
+        }
+
+        function gerarRelatorioImpressao() {
+            window.print();
+        }
+
+        formAluno.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nome = inputNome.value.trim();
+            const data = inputData.value;
+            if (nome && data) {
+                adicionarAluno(nome, data);
+                filtroData.value = data;
+                inputNome.value = '';
+                atualizarInterface();
+            }
+        });
+
+        filtroData.addEventListener('change', atualizarInterface);
+
+        atualizarInterface();
+        footer = document.createElement('footer');
+        footer.innerHTML = '<p>&copy; Sistema de Chamada. Todos os direitos reservados. Elaborado pelo Professor Francisco - Set/2026</p>';
+        document.body.appendChild(footer);
+    </script>
+</body>
+</html>

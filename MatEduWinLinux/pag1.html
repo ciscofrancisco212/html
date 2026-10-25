@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows x Linux Ubuntu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Windows x Linux Ubuntu</h1>
+        <p>Comparativo de Sistemas Operacionais</p>
+        <p>Pesquisa elaborado por: Prof.Francisco - Set/2026</p>
+    </header>
+
+    <main>
+        <section class="introducao">
+            <h2>O que são sistemas operacionais?</h2>
+            <p>
+                São programas que gerenciam o hardware, executam aplicações
+                e permitem a interação entre o usuário e o computador.
+            </p>
+        </section>
+
+        <section class="comparacao">
+            <article class="sistema windows">
+                <h2>🪟 Windows</h2>
+                <p><strong>Desenvolvedor:</strong> Microsoft</p>
+                <h3>Vantagens</h3>
+                <ul>
+                    <li>Interface conhecida por muitos usuários.</li>
+                    <li>Ampla compatibilidade com programas comerciais.</li>
+                    <li>Grande suporte a jogos e periféricos.</li>
+                </ul>
+                <h3>Desvantagens</h3>
+                <ul>
+                    <li>Licença geralmente paga.</li>
+                    <li>Alvo frequente de malwares.</li>
+                    <li>Algumas versões exigem hardware mais recente.</li>
+                </ul>
+                <h3>Aplicabilidades</h3>
+                <p>Escritórios, empresas, jogos, educação, desenvolvimento
+                   de software e uso doméstico.</p>
+                <button onclick="mostrarDetalhes('detalhesWindows')">
+                    Saiba mais
+                </button>
+                <p id="detalhesWindows" class="detalhes">
+                    É bastante utilizado em computadores pessoais e ambientes
+                    corporativos, com suporte a ferramentas como Microsoft Office.
+                </p>
+            </article>
+
+            <article class="sistema ubuntu">
+                <h2>🐧 Linux Ubuntu</h2>
+                <p><strong>Desenvolvedor:</strong> Comunidade Ubuntu e Canonical</p>
+                <h3>Vantagens</h3>
+                <ul>
+                    <li>Gratuito e de código aberto.</li>
+                    <li>Boa segurança quando atualizado e bem configurado.</li>
+                    <li>Excelente para servidores e programação.</li>
+                </ul>
+                <h3>Desvantagens</h3>
+                <ul>
+                    <li>Alguns programas comerciais não possuem versão nativa.</li>
+                    <li>Certos jogos e dispositivos podem exigir adaptações.</li>
+                    <li>Pode exigir aprendizado para novos usuários.</li>
+                </ul>
+                <h3>Aplicabilidades</h3>
+                <p>Servidores, programação, computação em nuvem,
+                   redes, educação e computadores pessoais.</p>
+                <button onclick="mostrarDetalhes('detalhesUbuntu')">
+                    Saiba mais
+                </button>
+                <p id="detalhesUbuntu" class="detalhes">
+                    É muito utilizado em servidores, ambientes de desenvolvimento,
+                    laboratórios de informática e infraestrutura de TI.
+                </p>
+            </article>
+        </section>
+
+        <section class="resumo">
+            <h2>Comparação rápida</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>Windows</th>
+                        <th>Ubuntu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Custo do sistema</td>
+                        <td>Licença geralmente paga</td>
+                        <td>Gratuito</td>
+                    </tr>
+                    <tr>
+                        <td>Código aberto</td>
+                        <td>Não</td>
+                        <td>Sim</td>
+                    </tr>
+                    <tr>
+                        <td>Jogos comerciais</td>
+                        <td>Amplo suporte</td>
+                        <td>Compatibilidade variável</td>
+                    </tr>
+                    <tr>
+                        <td>Servidores e nuvem</td>
+                        <td>Utilizado</td>
+                        <td>Muito utilizado</td>
+                    </tr>
+                    <tr>
+                        <td>Programação</td>
+                        <td>Sim</td>
+                        <td>Sim</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+<!--Acrescentar informações adicionais aqui-->
+
+<section class="versoes">
+    <h2>Versões do Windows x Distribuições Linux</h2>
+    <p>Conheça 10 opções de cada sistema operacional.</p>
+
+    <div class="lista-versoes">
+
+        <article class="grupo-versoes windows">
+            <h3>🪟 Windows — 10 versões</h3>
+            <ol>
+                <li><strong>Windows 11:</strong> sistema atual para computadores compatíveis.</li>
+                <li><strong>Windows 10:</strong> sistema lançado em 2015; suporte comum encerrado em 2025.</li>
+                <li><strong>Windows 8.1:</strong> versão com interface adaptada a telas sensíveis ao toque.</li>
+                <li><strong>Windows 8:</strong> introduziu uma interface voltada também a dispositivos touch.</li>
+                <li><strong>Windows 7:</strong> conhecido pela interface tradicional e ampla adoção histórica.</li>
+                <li><strong>Windows Vista:</strong> trouxe mudanças visuais e recursos de segurança.</li>
+                <li><strong>Windows XP:</strong> muito utilizado em computadores domésticos e empresariais no passado.</li>
+                <li><strong>Windows 2000:</strong> voltado principalmente a ambientes profissionais e corporativos.</li>
+                <li><strong>Windows 98:</strong> utilizado em computadores pessoais no final dos anos 1990.</li>
+                <li><strong>Windows 95:</strong> marcou a popularização do menu Iniciar e da barra de tarefas.</li>
+            </ol>
+        </article>
+
+        <article class="grupo-versoes ubuntu">
+            <h3>🐧 Linux — 10 distribuições</h3>
+            <ol>
+                <li><strong>Ubuntu:</strong> uso doméstico, educação, programação e servidores.</li>
+                <li><strong>Linux Mint:</strong> computadores pessoais e usuários iniciantes.</li>
+                <li><strong>Debian:</strong> servidores, estabilidade e ambientes de desenvolvimento.</li>
+                <li><strong>Fedora:</strong> desenvolvimento de software e tecnologias recentes.</li>
+                <li><strong>Linux openSUSE:</strong> administração de sistemas e uso profissional.</li>
+                <li><strong>Arch Linux:</strong> usuários que desejam personalizar o sistema.</li>
+                <li><strong>Manjaro:</strong> desktop com ferramentas que facilitam o uso do Arch Linux.</li>
+                <li><strong>Zorin OS:</strong> computadores pessoais e transição do Windows para Linux.</li>
+                <li><strong>elementary OS:</strong> uso doméstico com interface visual simplificada.</li>
+                <li><strong>Kali Linux:</strong> testes de segurança, auditoria e análise de redes autorizadas.</li>
+            </ol>
+        </article>
+
+    </div>
+</section>
+
+
+        <section class="conclusao">
+            <h2>Conclusão</h2>
+            <p>
+                Os dois sistemas têm aplicações importantes na Informática.
+                A escolha depende dos programas necessários, do orçamento,
+                dos equipamentos e dos conhecimentos do usuário.
+            </p>
+            <button onclick="window.print()">Imprimir comparação</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>Material educativo — Curso de Informática e Tecnologia</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

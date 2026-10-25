@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuaEscola - Materiais Escolares</title>
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Arquivo CSS Externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho / Navbar -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>SuaEscola</span>
+            </div>
+            
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Buscar material escolar...">
+            </div>
+
+            <button class="cart-btn" id="openCartBtn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cartBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-container">
+        <!-- Banner -->
+        <section class="banner">
+            <div>
+                <h2>Volta às Aulas 2026! 🎒✏️</h2>
+                <p>Os melhores materiais com ofertas imperdíveis. Use o cupom <strong>ESCOLA10</strong> para 10% de desconto!</p>
+            </div>
+        </section>
+
+        <!-- Filtro por Categorias -->
+        <div class="categories" id="categoryFilters">
+            <button class="cat-btn active" data-cat="todas">Todas</button>
+            <button class="cat-btn" data-cat="cadernos">Cadernos e Agendas</button>
+            <button class="cat-btn" data-cat="escrita">Escrita e Pintura</button>
+            <button class="cat-btn" data-cat="mochilas">Mochilas e Estojos</button>
+            <button class="cat-btn" data-cat="acessorios">Acessórios</button>
+        </div>
+
+        <!-- Grade de Produtos (10 Itens) -->
+        <section class="products-grid" id="productsContainer">
+            <!-- Produtos renderizados via JavaScript -->
+        </section>
+    </main>
+
+    <!-- Modal do Carrinho -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-cart-shopping"></i> Seu Carrinho</h3>
+                <button class="close-btn" id="closeCartBtn">&times;</button>
+            </div>
+            
+            <div class="cart-body" id="cartItemsContainer">
+                <!-- Itens do carrinho serão inseridos aqui -->
+            </div>
+
+            <div class="cart-summary">
+                <div class="coupon-section">
+                    <input type="text" id="couponInput" placeholder="Cupom de desconto">
+                    <button id="applyCouponBtn">Aplicar</button>
+                </div>
+
+                <div class="summary-details">
+                    <div class="row">
+                        <span>Subtotal:</span>
+                        <span id="subtotalVal">R$ 0,00</span>
+                    </div>
+                    <div class="row discount-row" id="discountRow" style="display: none;">
+                        <span>Desconto:</span>
+                        <span id="discountVal">- R$ 0,00</span>
+                    </div>
+                    <div class="row total-row">
+                        <span>Total:</span>
+                        <span id="totalVal">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <label>Forma de Pagamento:</label>
+                    <select id="paymentMethod">
+                        <option value="pix">Pix (Aprovação Instantânea)</option>
+                        <option value="cartao">Cartão de Crédito</option>
+                        <option value="dinheiro">Dinheiro na Entrega</option>
+                    </select>
+                </div>
+
+                <button class="checkout-btn" id="checkoutBtn">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal do Comprovante / Recibo -->
+    <div class="modal-overlay" id="receiptModal">
+        <div class="modal-content receipt-modal">
+            <div class="receipt-header">
+                <i class="fa-solid fa-circle-check success-icon"></i>
+                <h3>Compra Realizada com Sucesso!</h3>
+                <p>Obrigado pela preferência.</p>
+            </div>
+            <div class="receipt-body" id="receiptBody">
+                <!-- Detalhes da venda renderizados via JS -->
+            </div>
+            <button class="checkout-btn" id="closeReceiptBtn">Fechar e Novo Pedido</button>
+        </div>
+    </div>
+
+    <!-- Notificação Flutuante (Toast) -->
+    <div class="toast" id="toast">Item adicionado ao carrinho!</div>
+
+    <!-- Arquivo JS Externo -->
+    <script src="script.js"></script>
+</body>
+</html>

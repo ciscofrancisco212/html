@@ -1,0 +1,60 @@
+/* Configurações básicas e centralização da página */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e1e24, #2a2a36);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+/* Container principal (Card) */
+.card-player {
+    background-color: #242430;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 320px;
+}
+
+/* Capa da música */
+.capa-album img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* Informações da música */
+.info-musica h2 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.info-musica p {
+    font-size: 0.9rem;
+    color: #a0a0b0;
+    margin-bottom: 20px;
+}
+
+/* Estilização do player de áudio native */
+.audio-player {
+    width: 100%;
+    border-radius: 8px;
+    outline: none;
+}
+
+/* Dica para personalizar a cor dos controles em navegadores baseados em Webkit (Chrome/Edge/Safari) */
+.audio-player::-webkit-media-controls-panel {
+    background-color: #323242;
+}

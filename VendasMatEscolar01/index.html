@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Vendas - Material Escolar</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>📚 Sistema de Vendas</h1>
+            <p>Material Escolar</p>
+        </header>
+
+        <section class="venda">
+
+            <div class="formulario">
+
+                <label for="produto">Selecione o produto:</label>
+
+                <select id="produto">
+                    <option value="0">-- Escolha um produto --</option>
+                    <option value="5.00">Caderno - R$ 5,00</option>
+                    <option value="2.50">Lápis - R$ 2,50</option>
+                    <option value="3.00">Caneta - R$ 3,00</option>
+                    <option value="4.50">Borracha - R$ 4,50</option>
+                    <option value="6.00">Apontador - R$ 6,00</option>
+                    <option value="8.00">Régua - R$ 8,00</option>
+                    <option value="12.00">Cola - R$ 12,00</option>
+                    <option value="15.00">Estojo - R$ 15,00</option>
+                    <option value="10.00">Tesoura - R$ 10,00</option>
+                    <option value="7.50">Marca-texto - R$ 7,50</option>
+                </select>
+
+                <label for="quantidade">Quantidade:</label>
+
+                <input type="number" id="quantidade" min="1" value="1">
+
+                <button onclick="adicionarProduto()">
+                    Adicionar ao Carrinho
+                </button>
+
+            </div>
+
+            <div class="carrinho">
+
+                <h2>🛒 Carrinho de Compras</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Qtd.</th>
+                            <th>Subtotal</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="listaCarrinho">
+                    </tbody>
+                </table>
+
+                <div class="total">
+                    <h2>Total: R$ <span id="total">0.00</span></h2>
+                </div>
+
+                <button class="finalizar" onclick="finalizarVenda()">
+                    Finalizar Venda
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298, hsl(214, 24%, 94%));
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    text-align: center;
+    color: #1e3c72;
+    margin-bottom: 5px;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #333;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    margin-bottom: 18px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #1e3c72;
+    box-shadow: 0 0 5px rgba(30, 60, 114, 0.3);
+}
+
+button {
+    padding: 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #1e3c72;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #14294f;
+}
+
+button.limpar {
+    background-color: #777;
+    margin-top: 10px;
+}
+
+button.limpar:hover {
+    background-color: #555;
+}
+
+.resultado {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    display: none;
+}
+
+.resultado h2 {
+    margin-bottom: 10px;
+}
+
+.resultado p {
+    margin: 7px 0;
+}
+
+.tabela {
+    margin-top: 30px;
+}
+
+.tabela h2 {
+    text-align: center;
+    color: #1e3c72;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+
+    border: 1px solid #ddd;
+
+    text-align: center;
+}
+
+th {
+    background-color: #1e3c72;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+@media (max-width: 500px) {
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    th,
+    td {
+        font-size: 13px;
+        padding: 8px;
+    }
+}

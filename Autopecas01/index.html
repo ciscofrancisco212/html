@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Vendas - Autopeças</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>⚙️ AutoPeças Express - Controle de Vendas</h1>
+  </header>
+
+  <main class="container">
+    
+    <!-- Painel de Seleção e Venda -->
+    <section class="card">
+      <h2>Realizar Venda</h2>
+      <form id="form-venda">
+        
+        <div class="form-group">
+          <label for="marca">Marca do Veículo:</label>
+          <select id="marca" required>
+            <option value="">-- Selecione uma Marca --</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Fiat">Fiat</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Renault">Renault</option>
+            <option value="Ford">Ford</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="peca">Peça:</label>
+          <select id="peca" disabled required>
+            <option value="">-- Selecione a Marca Primeiro --</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="preco-unitario">Preço Unitário (R$):</label>
+          <input type="text" id="preco-unitario" readonly placeholder="R$ 0,00">
+        </div>
+
+        <div class="form-group">
+          <label for="quantidade">Quantidade:</label>
+          <input type="number" id="quantidade" min="1" value="1" required>
+        </div>
+
+        <button type="submit" id="btn-vender">Adicionar à Venda</button>
+      </form>
+    </section>
+
+    <!-- Resumo de Vendas Realizadas -->
+    <section class="card">
+      <h2>Vendas Registradas</h2>
+      <div class="table-responsive">
+        <table id="tabela-vendas">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Data/Hora</th>
+              <th>Marca</th>
+              <th>Peça</th>
+              <th>Qtd</th>
+              <th>Preço Un.</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Linhas inseridas dinamicamente via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="total-geral">
+        <h3>Total Geral Vendido: <span id="total-vendas">R$ 0,00</span></h3>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

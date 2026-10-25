@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sistema de Vendas - Material Escolar</title>
+        <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>📚 Sistema de Vendas</h1>
+            <p>Material Escolar</p> 
+            
+        </header>
+
+        <section class="dados-venda">
+
+            <div class="campo">
+                <label for="dataVenda">Data da Venda:</label>
+                <input type="date" id="dataVenda">
+            </div>
+
+        </section>
+
+        <section class="produtos">
+
+            <h2>Produtos</h2>
+
+            <div class="form-produto">
+
+                <div class="campo">
+                    <label for="produto">Produto:</label>
+
+                    <select id="produto">
+                        <option value="">Selecione um produto</option>
+                        <option value="Caderno 10 matérias" data-preco="25.90">
+                            Caderno 10 matérias - R$ 25,90
+                        </option>
+
+                        <option value="Caderno universitário" data-preco="18.90">
+                            Caderno universitário - R$ 18,90
+                        </option>
+
+                        <option value="Caneta azul" data-preco="2.50">
+                            Caneta azul - R$ 2,50
+                        </option>
+
+                        <option value="Lápis preto" data-preco="1.50">
+                            Lápis preto - R$ 1,50
+                        </option>
+
+                        <option value="Borracha branca" data-preco="1.80">
+                            Borracha branca - R$ 1,80
+                        </option>
+
+                        <option value="Apontador" data-preco="3.50">
+                            Apontador - R$ 3,50
+                        </option>
+
+                        <option value="Régua 30 cm" data-preco="4.90">
+                            Régua 30 cm - R$ 4,90
+                        </option>
+
+                        <option value="Cola branca" data-preco="5.90">
+                            Cola branca - R$ 5,90
+                        </option>
+
+                        <option value="Tesoura escolar" data-preco="9.90">
+                            Tesoura escolar - R$ 9,90
+                        </option>
+
+                        <option value="Mochila escolar" data-preco="89.90">
+                            Mochila escolar - R$ 89,90
+                        </option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" id="quantidade" min="1" value="1">
+                </div>
+
+                <button class="btn-adicionar" onclick="adicionarProduto()">
+                    ➕ Adicionar
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="carrinho">
+
+            <h2>🛒 Itens da Venda</h2>
+
+            <table id="tabelaVenda">
+
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Preço Unit.</th>
+                        <th>Quantidade</th>
+                        <th>Total</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+
+                <tbody id="listaProdutos">
+                </tbody>
+
+            </table>
+
+            <div class="total">
+                <strong>Total da Venda:</strong>
+                <span id="totalVenda">R$ 0,00</span>
+            </div>
+
+        </section>
+
+        <section class="acoes">
+
+            <button class="btn-salvar" onclick="salvarVenda()">
+                💾 Salvar Venda
+            </button>
+
+            <button class="btn-imprimir" onclick="imprimirVenda()">
+                🖨️ Imprimir Venda
+            </button>
+
+            <button class="btn-nova" onclick="novaVenda()">
+                🔄 Nova Venda
+            </button>
+
+        </section>
+
+        <footer>
+            <img src="img02.jpg" alt="">
+            <p>
+                <a href="https://www.mercadolivre.com.br/" target="_blank">Visitar a página MELI</a>
+            </p>
+            <p>
+                Sistema de Vendas de Material Escolar - Desenvolvido por <strong>CISCO-2026</strong>
+
+            </p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

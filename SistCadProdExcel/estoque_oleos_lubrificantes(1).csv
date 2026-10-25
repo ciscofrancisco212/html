@@ -1,0 +1,11 @@
+﻿Código;Produto / tipo de óleo;Aplicação sugerida;Embalagem;Estoque atual;Custo unitário (R$);Estoque mínimo;Localização;Valor total em estoque (R$);Status do estoque
+OL001;Óleo 5W-30 Sintético;Carro de passeio flex;1 litro;45;R$ 18,90;35;Prateleira A1;R$ 472,50;REPOR
+OL002;Óleo 5W-40 Sintético;Carro de passeio gasolina;1 litro;18;R$ 24,50;25;Prateleira A2;R$ 441,00;REPOR
+OL003;Óleo 10W-40 Semissintético;Carro de passeio flex;1 litro;30;R$ 19,90;30;Prateleira A3;R$ 597,00;REPOR
+OL004;Óleo 15W-40 Mineral;Veículo utilitário;1 litro;22;R$ 17,50;25;Prateleira A4;R$ 385,00;REPOR
+OL005;Óleo 5W-30 Diesel;Picape diesel;1 litro;14;R$ 27,90;20;Prateleira B1;R$ 390,60;REPOR
+OL006;Óleo 15W-40 Diesel;Caminhão leve;1 litro;16;R$ 21,90;20;Prateleira B2;R$ 350,40;REPOR
+OL007;Óleo 20W-50 Mineral;Motocicleta 4 tempos;1 litro;28;R$ 16,90;25;Prateleira B3;R$ 473,20;OK
+OL008;Óleo 10W-30;Motocicleta urbana;1 litro;20;R$ 22,90;20;Prateleira B4;R$ 458,00;REPOR
+OL009;Óleo para transmissão ATF;Carro com transmissão automática;1 litro;12;R$ 29,90;15;Prateleira C1;R$ 358,80;REPOR
+OL010;Óleo 80W-90 para engrenagens;Van / utilitário;1 litro;10;R$ 26,50;12;Prateleira C2;R$ 265,00;REPOR

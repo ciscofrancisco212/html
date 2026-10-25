@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendas de Material Escolar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>📚 Papelaria Escolar</h1>
+    </header>
+
+    <main class="container"><!-- -->
+        <section class="catalogo">
+            <h2>Produtos</h2>
+            <div id="lista-produtos" class="grid-produtos"></div>
+        </section>
+
+        <section class="carrinho">
+            
+            <h2>Carrinho de Compras</h2>
+            <ul id="itens-carrinho"></ul>
+            
+            <div class="total-container">
+                <strong>Total: R$ <span id="valor-total">0.00</span></strong>
+            </div>
+
+            <button id="btn-finalizar" class="btn-sucesso">Finalizar Compra</button>
+         </section> 
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

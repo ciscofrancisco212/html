@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Frequência e Notas Escolares</title>
+
+<style>
+:root {
+    --primary: #2563eb;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --border: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(85deg, #10b2b7, #050009);
+    padding: 20px;
+    color: #1e293b;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+header, .section, .card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px #0002;
+}
+
+header h1 {
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+#nome-aluno {
+    flex: 2;
+    min-width: 200px;
+}
+
+#data-chamada {
+    flex: 1;
+    min-width: 150px;
+}
+
+#nota-aluno {
+    width: 140px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-primary {
+    background: var(--primary);
+}
+
+.btn-save {
+    background: var(--success);
+}
+
+.btn-print {
+    background: #0f172a;
+}
+
+.btn-delete {
+    background: var(--danger);
+}
+
+.btn-status {
+    background: #64748b;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card {
+    text-align: center;
+    margin: 0;
+}
+
+.card span {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.card strong {
+    font-size: 28px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    background: #f1f5f9;
+}
+
+.nota-input {
+    width: 90px;
+}
+
+.presente {
+    color: var(--success);
+    font-weight: bold;
+}
+
+.ausente {
+    color: var(--danger);
+    font-weight: bold;
+}
+
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .form-section, .filter-section,
+    .acoes, .nao-imprimir, header {
+        display: none !important;
+    }
+
+    .section, .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    input {
+        border: none;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+    <h1>Sistema de Controle de Frequência Escolar</h1>
+    <p>Cadastro de alunos, lançamento de notas e controle de presença</p>
+</header>
+
+<div class="section form-section">
+    <h2>Cadastro de Alunos e Lançamento de Notas</h2>
+
+    <form id="form-aluno" class="form-row">
+        <input type="text" id="nome-aluno"
+               placeholder="Nome completo do aluno" required>
+
+        <input type="date" id="data-chamada" required>
+
+        <input type="number" id="nota-aluno"
+               placeholder="Nota (0 a 10)"
+               min="0" max="10" step="0.1" required>
+
+        <button type="submit" class="btn-primary">
+            Adicionar Aluno
+        </button>
+    </form>
+</div>
+
+<div class="section filter-section">
+    <div class="form-row">
+        <label for="filtro-data"><strong>Filtrar por data:</strong></label>
+        <input type="date" id="filtro-data">
+
+        <button class="btn-save" onclick="salvarArquivoJSON()">
+            Salvar JSON
+        </button>
+
+        <button class="btn-print" onclick="window.print()">
+            Imprimir Relatório
+        </button>
+    </div>
+</div>
+
+<div class="dashboard">
+    <div class="card">
+        <span>Registros no dia</span>
+        <strong id="total-alunos">0</strong>
+    </div>
+
+    <div class="card">
+        <span>Presentes</span>
+        <strong id="total-presentes" style="color:green">0</strong>
+    </div>
+
+    <div class="card">
+        <span>Ausentes</span>
+        <strong id="total-ausentes" style="color:red">0</strong>
+    </div>
+
+    <div class="card">
+        <span>Taxa de frequência</span>
+        <strong id="taxa-frequencia">0%</strong>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Relação de Alunos, Notas e Frequência</h2>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Data</th>
+                    <th>Aluno</th>
+                    <th>Nota</th>
+                    <th>Situação</th>
+                    <th class="nao-imprimir">Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabela-alunos"></tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+
+<script>
+const hoje = new Date().toISOString().split("T")[0];
+
+document.getElementById("data-chamada").value = hoje;
+document.getElementById("filtro-data").value = hoje;
+
+let alunos = JSON.parse(
+    localStorage.getItem("alunos_db_relatorio")
+) || [];
+
+alunos = alunos.map(aluno => ({
+    ...aluno,
+    nota: aluno.nota ?? ""
+}));
+
+const formAluno = document.getElementById("form-aluno");
+const inputNome = document.getElementById("nome-aluno");
+const inputData = document.getElementById("data-chamada");
+const inputNota = document.getElementById("nota-aluno");
+const filtroData = document.getElementById("filtro-data");
+const tabela = document.getElementById("tabela-alunos");
+
+function salvarDados() {
+    localStorage.setItem(
+        "alunos_db_relatorio",
+        JSON.stringify(alunos)
+    );
+
+    atualizarInterface();
+}
+
+function adicionarAluno(nome, data, nota) {
+    alunos.push({
+        id: Date.now(),
+        nome: nome,
+        data: data,
+        nota: Number(nota),
+        presente: true
+    });
+
+    salvarDados();
+}
+
+function alterarNota(id, valor) {
+    if (
+        valor.trim() === "" ||
+        !Number.isFinite(Number(valor)) ||
+        Number(valor) < 0 ||
+        Number(valor) > 10
+    ) {
+        alert("Digite uma nota válida entre 0 e 10.");
+        atualizarInterface();
+        return;
+    }
+
+    alunos = alunos.map(aluno =>
+        aluno.id === id
+            ? { ...aluno, nota: Number(valor) }
+            : aluno
+    );
+
+    salvarDados();
+}
+
+function alternarPresenca(id) {
+    alunos = alunos.map(aluno =>
+        aluno.id === id
+            ? { ...aluno, presente: !aluno.presente }
+            : aluno
+    );
+
+    salvarDados();
+}
+
+function removerAluno(id) {
+    if (confirm("Deseja excluir este registro?")) {
+        alunos = alunos.filter(aluno => aluno.id !== id);
+        salvarDados();
+    }
+}
+
+function formatarData(data) {
+    if (!data) return "";
+
+    const partes = data.split("-");
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
+function atualizarInterface() {
+    tabela.innerHTML = "";
+
+    const dataSelecionada = filtroData.value;
+
+    const filtrados = alunos.filter(
+        aluno => aluno.data === dataSelecionada
+    );
+
+    let presentes = 0;
+
+    if (filtrados.length === 0) {
+        tabela.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align:center">
+                    Nenhum registro para esta data.
+                </td>
+            </tr>`;
+    }
+
+    filtrados.forEach(aluno => {
+        if (aluno.presente) presentes++;
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>#${String(aluno.id).slice(-4)}</td>
+            <td>${formatarData(aluno.data)}</td>
+            <td><strong></strong></td>
+            <td>
+                <input class="nota-input" type="number"
+                    min="0" max="10" step="0.1"
+                    value="${aluno.nota ?? ""}"
+                    aria-label="Nota do aluno"
+                    onchange="alterarNota(${aluno.id}, this.value)">
+            </td>
+            <td class="${aluno.presente ? "presente" : "ausente"}">
+                ${aluno.presente ? "Presente" : "Ausente"}
+            </td>
+            <td class="acoes nao-imprimir">
+                <button class="btn-status"
+                    onclick="alternarPresenca(${aluno.id})">
+                    Alternar presença
+                </button>
+
+                <button class="btn-delete"
+                    onclick="removerAluno(${aluno.id})">
+                    Excluir
+                </button>
+            </td>
+        `;
+
+        // Insere o nome como texto para evitar interpretar
+        // caracteres digitados pelo usuário como HTML.
+        tr.cells[2].textContent = aluno.nome;
+
+        tabela.appendChild(tr);
+    });
+
+    const total = filtrados.length;
+    const ausentes = total - presentes;
+    const taxa = total > 0
+        ? Math.round((presentes / total) * 100)
+        : 0;
+
+    document.getElementById("total-alunos").textContent = total;
+    document.getElementById("total-presentes").textContent = presentes;
+    document.getElementById("total-ausentes").textContent = ausentes;
+    document.getElementById("taxa-frequencia").textContent = taxa + "%";
+}
+
+function salvarArquivoJSON() {
+    const conteudo = JSON.stringify(alunos, null, 2);
+
+    const arquivo = new Blob(
+        [conteudo],
+        { type: "application/json;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(arquivo);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "registros_escolares.json";
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
+
+formAluno.addEventListener("submit", function(evento) {
+    evento.preventDefault();
+
+    const nome = inputNome.value.trim();
+    const data = inputData.value;
+    const nota = inputNota.value;
+
+    if (
+        !nome ||
+        !data ||
+        nota === "" ||
+        !Number.isFinite(Number(nota)) ||
+        Number(nota) < 0 ||
+        Number(nota) > 10
+    ) {
+        alert("Preencha o nome, a data e uma nota entre 0 e 10.");
+        return;
+    }
+
+    adicionarAluno(nome, data, nota);
+
+    filtroData.value = data;
+    inputNome.value = "";
+    inputNota.value = "";
+    inputNome.focus();
+});
+
+filtroData.addEventListener("change", atualizarInterface);
+
+atualizarInterface();
+</script>
+
+</body>
+</html>

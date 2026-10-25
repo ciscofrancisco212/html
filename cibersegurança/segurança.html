@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Hub - Cibersegurança</title>
+    <!-- Fonte Hacker/Tech do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span class="icon">🛡️</span> CYBER<span class="highlight">SHIELD</span>
+        </div>
+        <nav>
+            <a href="#analyzer">Analisador</a>
+            <a href="#generator">Gerador</a>
+            <a href="#phishing">Simulador Phishing</a>
+            <a href="#glossary">Glossário</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- MÓDULO 1: ANALISADOR DE SENHAS -->
+        <section id="analyzer" class="card">
+            <h2>🔍 Analisador de Força de Senha</h2>
+            <p>Teste a resistência da sua senha contra ataques de força bruta.</p>
+
+            <div class="input-group">
+                <input type="password" id="passwordInput" placeholder="Digite uma senha para testar..." autocomplete="off">
+                <button type="button" id="togglePassBtn">👁️</button>
+            </div>
+
+            <!-- Meter de força -->
+            <div class="strength-meter">
+                <div id="strengthBar" class="strength-bar"></div>
+            </div>
+            <div class="strength-label">
+                <span>Força: <strong id="strengthText">Aguardando...</strong></span>
+                <span>Tempo estimado de quebra: <strong id="crackTime">-</strong></span>
+            </div>
+
+            <!-- Requisitos -->
+            <ul class="requirements" id="requirementsList">
+                <li data-req="length">❌ Mínimo de 8 caracteres</li>
+                <li data-req="upper">❌ Pelo menos uma letra maiúscula</li>
+                <li data-req="lower">❌ Pelo menos uma letra minúscula</li>
+                <li data-req="number">❌ Pelo menos um número</li>
+                <li data-req="symbol">❌ Pelo menos um caractere especial (!@#$...)</li>
+            </ul>
+        </section>
+
+        <!-- MÓDULO 2: GERADOR DE SENHAS -->
+        <section id="generator" class="card">
+            <h2>⚡ Gerador de Senhas Seguras</h2>
+            <p>Crie senhas aleatórias e criptograficamente seguras.</p>
+
+            <div class="generated-output">
+                <input type="text" id="generatedPassword" readonly placeholder="Clique em Gerar">
+                <button id="copyBtn" class="btn-secondary">Copiar</button>
+            </div>
+
+            <div class="options">
+                <label>
+                    Tamanho: <span id="lengthVal">16</span>
+                    <input type="range" id="lengthSlider" min="8" max="32" value="16">
+                </label>
+
+                <div class="checkboxes">
+                    <label><input type="checkbox" id="incUpper" checked> Maiúsculas (A-Z)</label>
+                    <label><input type="checkbox" id="incLower" checked> Minúsculas (a-z)</label>
+                    <label><input type="checkbox" id="incNum" checked> Números (0-9)</label>
+                    <label><input type="checkbox" id="incSym" checked> Símbolos (!@#$)</label>
+                </div>
+            </div>
+
+            <button id="generateBtn" class="btn-primary">Gerar Senha</button>
+        </section>
+
+        <!-- MÓDULO 3: SIMULADOR ANTI-PHISHING -->
+        <section id="phishing" class="card">
+            <h2>🎣 Simulador Anti-Phishing</h2>
+            <p>Analise a mensagem abaixo e decida se é um e-mail legítimo ou um ataque de Phishing.</p>
+
+            <div class="email-box">
+                <div class="email-header">
+                    <p><strong>De:</strong> suporte@banc0-seguro-atualiza.com</p>
+                    <p><strong>Assunto:</strong> 🚨 URGENTE: Sua conta será bloqueada em 24h!</p>
+                </div>
+                <div class="email-body">
+                    <p>Prezado cliente,</p>
+                    <p>Identificamos um acesso suspeito na sua conta. Para evitar o bloqueio imediato, clique no link abaixo e confirme seus dados cadastrais e senha do cartão.</p>
+                    <p><a href="#" onclick="return false;">http://banc0-seguro-atualiza.com/login-login</a></p>
+                    <p>Atenciosamente,<br>Equipe de Segurança.</p>
+                </div>
+            </div>
+
+            <div class="phishing-actions">
+                <button id="btnLegit" class="btn-success">É Legítimo</button>
+                <button id="btnPhishing" class="btn-danger">É Phishing (Ataque)</button>
+            </div>
+
+            <div id="phishingFeedback" class="feedback hidden"></div>
+        </section>
+
+        <!-- MÓDULO 4: GLOSSÁRIO INTERATIVO -->
+        <section id="glossary" class="card">
+            <h2>📚 Glossário de Cibersegurança</h2>
+            <input type="text" id="searchGlossary" placeholder="Pesquisar termo (ex: Malware, Firewall, 2FA)...">
+
+            <div class="glossary-grid" id="glossaryGrid">
+                <div class="glossary-card" data-term="malware">
+                    <h3>Malware</h3>
+                    <p>Qualquer software malicioso projetado para causar danos, roubar dados ou violar sistemas (ex: vírus, trojans).</p>
+                </div>
+                <div class="glossary-card" data-term="phishing">
+                    <h3>Phishing</h3>
+                    <p>Técnica de engenharia social para enganar pessoas e fazê-las revelar informações confidenciais, como senhas.</p>
+                </div>
+                <div class="glossary-card" data-term="ransomware">
+                    <h3>Ransomware</h3>
+                    <p>Tipo de malware que criptografa os arquivos da vítima e exige um resgate (geralmente em criptomoedas) para liberá-los.</p>
+                </div>
+                <div class="glossary-card" data-term="2fa mfa">
+                    <h3>2FA / MFA (Autenticação de Dois Fatores)</h3>
+                    <p>Camada adicional de segurança que exige dois ou mais métodos de verificação para conceder acesso à conta.</p>
+                </div>
+                <div class="glossary-card" data-term="firewall">
+                    <h3>Firewall</h3>
+                    <p>Dispositivo de segurança de rede que monitora e filtra o tráfego de entrada e saída com base em regras configuradas.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>CyberShield Hub &copy; 2026 - Material Ilustrativo Didático</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

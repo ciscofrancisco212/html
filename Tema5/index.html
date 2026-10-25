@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estruturas de Repetição em JS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Visualizador de Estruturas de Repetição</h1>
+    
+    <!-- Painel de Configuração -->
+    <div class="controls">
+      <div class="field">
+        <label for="tipoLaco">Tipo de Repetição:</label>
+        <select id="tipoLaco">
+          <option value="for">Laço FOR</option>
+          <option value="while">Laço WHILE</option>
+          <option value="dowhile">Laço DO...WHILE</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="limite">Quantidade de Iterações:</label>
+        <input type="number" id="limite" value="5" min="1" max="20">
+      </div>
+
+      <button id="btnExecutar">Executar Laço</button>
+    </div>
+
+    <!-- Exibição do Código Simulado -->
+    <div class="code-preview">
+      <h3>Código Executado:</h3>
+      <pre><code id="codigoTela">// Clique em Executar para gerar o código</code></pre>
+    </div>
+
+    <!-- Saída do Resultado -->
+    <div class="output-panel">
+      <h3>Saída / Terminal:</h3>
+      <div id="resultado" class="terminal"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

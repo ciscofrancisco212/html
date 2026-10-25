@@ -1,0 +1,30 @@
+body{
+    /*Cor de fundo da página*/
+    background-color:rgb(141, 167, 216);
+    font: normal 16px Arial, sans-serif;
+}
+
+header{
+    color:rgb(11, 8, 102);/*  */
+    text-align:center;
+}
+section{
+    background-color:rgba(167, 160, 160, 0.8);
+    margin: 20px;
+    padding: 35px;
+    margin-left: auto;  /*Caixa com contéudo da <Div class= "conteúdo"    */
+    margin-right: auto;
+    width: 500px;
+    border-radius: 20px;
+    box-shadow: rgb(240, 9, 9) 0px 0px 10px;
+    text-align: center;
+}
+footer{
+    background-color:rgb(18, 18, 222);
+    color:aliceblue;
+    text-align:center; /*Dados do nosso rodapé      */
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width:350px;
+}

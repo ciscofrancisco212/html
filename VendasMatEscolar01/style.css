@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    width: 95%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+header {
+    background: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    border-radius: 12px 12px 0 0;
+}
+
+header h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 18px;
+}
+
+.venda {
+    background: white;
+    padding: 25px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+}
+
+.formulario {
+    display: grid;
+    grid-template-columns: 1fr 200px 120px;
+    gap: 15px;
+    align-items: end;
+    margin-bottom: 30px;
+}
+
+.formulario label {
+    font-weight: bold;
+}
+
+.formulario label:first-child {
+    grid-column: 1 / 2;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+select {
+    grid-column: 1 / 2;
+}
+
+.formulario label:nth-of-type(2) {
+    grid-column: 2 / 3;
+}
+
+#quantidade {
+    grid-column: 2 / 3;
+}
+
+.formulario button {
+    grid-column: 3 / 4;
+    grid-row: 2;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.carrinho h2 {
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    background: #1e3a8a;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+.remover {
+    background: #dc2626;
+    padding: 7px 12px;
+}
+
+.remover:hover {
+    background: #b91c1c;
+}
+
+.total {
+    text-align: right;
+    margin-top: 25px;
+    padding: 15px;
+    background: #f1f5f9;
+    border-radius: 8px;
+}
+
+.total h2 {
+    color: #1e3a8a;
+    margin: 0;
+}
+
+.finalizar {
+    display: block;
+    margin: 20px 0 0 auto;
+    background: #16a34a;
+    padding: 14px 25px;
+}
+
+.finalizar:hover {
+    background: #15803d;
+}
+
+@media (max-width: 700px) {
+
+    .formulario {
+        display: block;
+    }
+
+    .formulario label,
+    .formulario select,
+    .formulario input,
+    .formulario button {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 7px;
+    }
+}

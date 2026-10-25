@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pressão Arterial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>❤️ Pressão Arterial</h1>
+            <p>Sistema de avaliação da pressão arterial humana</p>
+            <p>Setembro de 2026</p>
+        </header>
+
+        <main>
+            <section class="painel">
+                <h2>Informe os valores medidos</h2>
+
+                <label for="sistolica">
+                    Pressão sistólica — máxima (mmHg)
+                </label>
+                <input type="number" id="sistolica"
+                       min="1" max="300"
+                       placeholder="Ex.: 120">
+
+                <label for="diastolica">
+                    Pressão diastólica — mínima (mmHg)
+                </label>
+                <input type="number" id="diastolica"
+                       min="1" max="200"
+                       placeholder="Ex.: 80">
+
+                <button type="button" onclick="avaliarPressao()">
+                    Avaliar pressão
+                </button>
+
+                <button type="button" class="limpar"
+                        onclick="limparCampos()">
+                    Limpar dados
+                </button>
+
+                <div id="resultado" class="resultado" aria-live="polite">
+                    <h3>Resultado da avaliação</h3>
+                    <p>Informe os dois valores para iniciar.</p>
+                </div>
+            </section>
+
+            <section class="referencia">
+                <h2>Classificação de referência para adultos</h2>
+                <p>Valores de pressão aferidos no consultório.</p>
+
+                <div class="faixa ideal">
+                    <strong>Ótima</strong>
+                    <span>Abaixo de 120 e abaixo de 80</span>
+                </div>
+
+                <div class="faixa normal">
+                    <strong>Normal</strong>
+                    <span>Sistólica 120–129 e/ou diastólica 80–84</span>
+                </div>
+
+                <div class="faixa atencao">
+                    <strong>Pré-hipertensão</strong>
+                    <span>Sistólica 130–139 e/ou diastólica 85–89</span>
+                </div>
+
+                <div class="faixa alta">
+                    <strong>Hipertensão estágio 1</strong>
+                    <span>Sistólica 140–159 e/ou diastólica 90–99</span>
+                </div>
+
+                <div class="faixa muito-alta">
+                    <strong>Hipertensão estágio 2</strong>
+                    <span>Sistólica 160–179 e/ou diastólica 100–109</span>
+                </div>
+
+                <div class="faixa critica">
+                    <strong>Hipertensão estágio 3</strong>
+                    <span>Sistólica ≥ 180 e/ou diastólica ≥ 110</span>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Ferramenta educativa. Não substitui avaliação médica.</p>
+            <img src="pressao1.jpg" alt="Pressão Arterial">
+        </footer>
+              
+         
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
