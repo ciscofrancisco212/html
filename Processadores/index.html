@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Processadores Intel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>💻 Guia de Processadores Intel</h1>
+    <p>Eficiência, desempenho e aplicações na Informática</p>
+</header>
+
+<nav>
+    <a href="#consulta">Consultar</a>
+    <a href="#comparacao">Comparação</a>
+    <a href="#geracoes">Gerações</a>
+</nav>
+
+<main>
+    <section class="introducao">
+        <h2>Conheça a família Intel</h2>
+        <p>
+            Os processadores são responsáveis por executar instruções,
+            realizar cálculos e coordenar tarefas do computador.
+            Sua capacidade depende do modelo, da geração, da quantidade
+            de núcleos, da frequência e de outros recursos.
+        </p>
+    </section>
+
+    <section id="consulta" class="painel">
+        <h2>Consultar processadores</h2>
+
+        <label for="processador">Selecione uma família:</label>
+        <select id="processador">
+            <option value="Celeron">Intel Celeron</option>
+            <option value="Pentium">Intel Pentium</option>
+            <option value="i3">Intel Core i3</option>
+            <option value="i5">Intel Core i5</option>
+            <option value="i7">Intel Core i7</option>
+            <option value="i9">Intel Core i9</option>
+            <option value="Core Ultra">Intel Core Ultra</option>
+        </select>
+
+        <button onclick="consultarProcessador()">
+            Consultar informações
+        </button>
+
+        <div id="resultado" class="resultado">
+            <p>Selecione um processador para visualizar suas informações.</p>
+        </div>
+    </section>
+
+    <section id="comparacao">
+        <h2>Comparação geral de desempenho</h2>
+
+        <p class="aviso">
+            Escala ilustrativa para fins didáticos. Não representa
+            resultados de testes de benchmark. A geração e o modelo
+            específico podem alterar bastante o desempenho.
+        </p>
+
+        <div class="tabela-responsiva">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Família</th>
+                        <th>Desempenho geral</th>
+                        <th>Aplicações comuns</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Celeron</td>
+                        <td>Entrada</td>
+                        <td>Navegação e tarefas simples</td>
+                    </tr>
+                    <tr>
+                        <td>Pentium</td>
+                        <td>Entrada</td>
+                        <td>Estudos e escritório básico</td>
+                    </tr>
+                    <tr>
+                        <td>Core i3</td>
+                        <td>Básico a intermediário</td>
+                        <td>Estudos e produtividade</td>
+                    </tr>
+                    <tr>
+                        <td>Core i5</td>
+                        <td>Intermediário a alto</td>
+                        <td>Multitarefas e jogos</td>
+                    </tr>
+                    <tr>
+                        <td>Core i7</td>
+                        <td>Alto</td>
+                        <td>Criação e aplicações exigentes</td>
+                    </tr>
+                    <tr>
+                        <td>Core i9</td>
+                        <td>Alto a entusiasta</td>
+                        <td>Renderização e cargas pesadas</td>
+                    </tr>
+                    <tr>
+                        <td>Core Ultra</td>
+                        <td>Varia conforme o modelo</td>
+                        <td>Produtividade, gráficos e recursos de IA</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="geracoes" class="painel">
+        <h2>Entendendo as gerações</h2>
+        <p>
+            A Intel lançou diferentes gerações de processadores ao longo
+            dos anos. Nos modelos Core, a geração pode influenciar a
+            arquitetura, a eficiência energética, o desempenho e os
+            recursos disponíveis.
+        </p>
+        <ul>
+            <li><strong>Modelos antigos:</strong> podem atender tarefas simples, dependendo do estado e da configuração.</li>
+            <li><strong>Gerações intermediárias:</strong> oferecem recursos e desempenho que variam conforme o modelo.</li>
+            <li><strong>Gerações recentes:</strong> podem oferecer melhorias em eficiência, gráficos e recursos especializados.</li>
+            <li><strong>Core Ultra:</strong> família que inclui modelos com recursos voltados também a tarefas de inteligência artificial.</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>Guia Educacional de Hardware | Família Intel</p>
+    <p>Material para estudo de Informática e montagem de computadores.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

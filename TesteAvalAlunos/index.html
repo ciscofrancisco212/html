@@ -1,0 +1,735 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Lançamento de Notas</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: hwb(111 2% 69%);
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1d3557;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .formulario {
+            display: grid;
+            grid-template-columns: 1.3fr 1.3fr 1fr 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        input {
+            padding: 11px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #457b9d;
+            outline: none;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        button {
+            border: none;
+            padding: 11px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn-adicionar {
+            background: #2a9d8f;
+            color: white;
+        }
+
+        .btn-adicionar:hover {
+            background: #21867a;
+        }
+
+        .btn-limpar {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-imprimir {
+            background: #264653;
+            color: white;
+        }
+
+        .btn-editar {
+            background: #f4a261;
+            color: white;
+            padding: 7px 10px;
+        }
+
+        .btn-excluir {
+            background: #e63946;
+            color: white;
+            padding: 7px 10px;
+        }
+
+        .tabela-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background: #1d3557;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f1f5f9;
+        }
+
+        .aprovado {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        .recuperacao {
+            color: #f4a261;
+            font-weight: bold;
+        }
+
+        .reprovado {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .resumo {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 25px;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 1000px) {
+            .formulario {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .formulario {
+                grid-template-columns: 1fr;
+            }
+
+            .resumo {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .formulario,
+            .botoes,
+            .acoes {
+                display: none;
+            }
+
+            h1 {
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📚 Sistema de Lançamento de Notas</h1>
+    <p class="subtitulo">
+        Cadastro e acompanhamento do desempenho dos alunos
+    </p>
+
+    <div class="formulario">
+
+        <!-- DATA -->
+        <div class="campo">
+            <label for="data">Data</label>
+            <input type="date" id="data">
+        </div>
+
+        <!-- ALUNO -->
+        <div class="campo">
+            <label for="aluno">Nome do Aluno</label>
+            <input type="text" id="aluno" placeholder="Digite o nome">
+        </div>
+
+        <!-- NOTA 1 -->
+        <div class="campo">
+            <label for="nota1">Nota 1</label>
+            <input type="number" id="nota1"
+                   min="0" max="10" step="0.1"
+                   placeholder="0 a 10">
+        </div>
+
+        <!-- NOTA 2 -->
+        <div class="campo">
+            <label for="nota2">Nota 2</label>
+            <input type="number" id="nota2"
+                   min="0" max="10" step="0.1"
+                   placeholder="0 a 10">
+        </div>
+
+        <!-- NOTA 3 -->
+        <div class="campo">
+            <label for="nota3">Nota 3</label>
+            <input type="number" id="nota3"
+                   min="0" max="10" step="0.1"
+                   placeholder="0 a 10">
+        </div>
+
+        <!-- NOTA 4 -->
+        <div class="campo">
+            <label for="nota4">Nota 4</label>
+            <input type="number" id="nota4"
+                   min="0" max="10" step="0.1"
+                   placeholder="0 a 10">
+        </div>
+
+    </div>
+
+    <div class="botoes">
+
+        <button class="btn-adicionar" onclick="adicionarAluno()">
+            ➕ Lançar Nota
+        </button>
+
+        <button class="btn-limpar" onclick="limparCampos()">
+            🧹 Limpar
+        </button>
+
+        <button class="btn-imprimir" onclick="window.print()">
+            🖨️ Imprimir
+        </button>
+
+    </div>
+
+    <div class="tabela-container">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Aluno</th>
+                    <th>Nota 1</th>
+                    <th>Nota 2</th>
+                    <th>Nota 3</th>
+                    <th>Nota 4</th>
+                    <th>Média</th>
+                    <th>Situação</th>
+                    <th class="acoes">Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabelaAlunos">
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="resumo">
+
+        <span>
+            Total de alunos:
+            <strong id="totalAlunos">0</strong>
+        </span>
+
+        <span>
+            Aprovados:
+            <strong id="totalAprovados">0</strong>
+        </span>
+
+        <span>
+            Recuperação:
+            <strong id="totalRecuperacao">0</strong>
+        </span>
+
+        <span>
+            Reprovados:
+            <strong id="totalReprovados">0</strong>
+        </span>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let alunos = [];
+    let indiceEdicao = -1;
+
+
+    // Coloca a data atual automaticamente
+    window.onload = function() {
+
+        const hoje = new Date();
+
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+        const dia = String(hoje.getDate()).padStart(2, "0");
+
+        document.getElementById("data").value =
+            `${ano}-${mes}-${dia}`;
+
+    };
+
+
+    function adicionarAluno() {
+
+        const data = document.getElementById("data").value;
+
+        const nome =
+            document.getElementById("aluno").value.trim();
+
+        const nota1 =
+            parseFloat(document.getElementById("nota1").value);
+
+        const nota2 =
+            parseFloat(document.getElementById("nota2").value);
+
+        const nota3 =
+            parseFloat(document.getElementById("nota3").value);
+
+        const nota4 =
+            parseFloat(document.getElementById("nota4").value);
+
+
+        // Validação da data
+        if (data === "") {
+
+            alert("Informe a data.");
+
+            return;
+        }
+
+
+        // Validação do nome
+        if (nome === "") {
+
+            alert("Digite o nome do aluno.");
+
+            return;
+        }
+
+
+        // Validação das notas
+        if (
+            isNaN(nota1) ||
+            isNaN(nota2) ||
+            isNaN(nota3) ||
+            isNaN(nota4)
+        ) {
+
+            alert("Digite todas as quatro notas.");
+
+            return;
+        }
+
+
+        // Validação dos valores
+        if (
+            nota1 < 0 || nota1 > 10 ||
+            nota2 < 0 || nota2 > 10 ||
+            nota3 < 0 || nota3 > 10 ||
+            nota4 < 0 || nota4 > 10
+        ) {
+
+            alert("As notas devem estar entre 0 e 10.");
+
+            return;
+        }
+
+
+        // Calcula a média
+        const media =
+            (nota1 + nota2 + nota3 + nota4) / 4;
+
+
+        // Define a situação
+        let situacao;
+
+
+        if (media >= 7) {
+
+            situacao = "Aprovado";
+
+        }
+
+        else if (media >= 5) {
+
+            situacao = "Recuperação";
+
+        }
+
+        else {
+
+            situacao = "Reprovado";
+
+        }
+
+
+        // Cria objeto do aluno
+        const aluno = {
+
+            data: data,
+
+            nome: nome,
+
+            nota1: nota1,
+
+            nota2: nota2,
+
+            nota3: nota3,
+
+            nota4: nota4,
+
+            media: media,
+
+            situacao: situacao
+
+        };
+
+
+        // Adiciona ou edita
+        if (indiceEdicao === -1) {
+
+            alunos.push(aluno);
+
+        }
+
+        else {
+
+            alunos[indiceEdicao] = aluno;
+
+            indiceEdicao = -1;
+
+        }
+
+
+        atualizarTabela();
+
+        limparCampos();
+
+    }
+
+
+    function atualizarTabela() {
+
+        const tabela =
+            document.getElementById("tabelaAlunos");
+
+        tabela.innerHTML = "";
+
+
+        alunos.forEach((aluno, indice) => {
+
+            let classeSituacao = "";
+
+
+            if (aluno.situacao === "Aprovado") {
+
+                classeSituacao = "aprovado";
+
+            }
+
+            else if (aluno.situacao === "Recuperação") {
+
+                classeSituacao = "recuperacao";
+
+            }
+
+            else {
+
+                classeSituacao = "reprovado";
+
+            }
+
+
+            // Converte a data para DD/MM/AAAA
+            const partesData = aluno.data.split("-");
+
+            const dataFormatada =
+                `${partesData[2]}/${partesData[1]}/${partesData[0]}`;
+
+
+            const linha = `
+
+                <tr>
+
+                    <td>${dataFormatada}</td>
+
+                    <td>${aluno.nome}</td>
+
+                    <td>${aluno.nota1.toFixed(1)}</td>
+
+                    <td>${aluno.nota2.toFixed(1)}</td>
+
+                    <td>${aluno.nota3.toFixed(1)}</td>
+
+                    <td>${aluno.nota4.toFixed(1)}</td>
+
+                    <td>
+                        <strong>
+                            ${aluno.media.toFixed(1)}
+                        </strong>
+                    </td>
+
+                    <td class="${classeSituacao}">
+                        ${aluno.situacao}
+                    </td>
+
+                    <td class="acoes">
+
+                        <button
+                            class="btn-editar"
+                            onclick="editarAluno(${indice})">
+                            ✏️ Editar
+                        </button>
+
+                        <button
+                            class="btn-excluir"
+                            onclick="excluirAluno(${indice})">
+                            🗑️ Excluir
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+
+            tabela.innerHTML += linha;
+
+        });
+
+
+        atualizarResumo();
+
+    }
+
+
+    function editarAluno(indice) {
+
+        const aluno = alunos[indice];
+
+
+        document.getElementById("data").value =
+            aluno.data;
+
+        document.getElementById("aluno").value =
+            aluno.nome;
+
+        document.getElementById("nota1").value =
+            aluno.nota1;
+
+        document.getElementById("nota2").value =
+            aluno.nota2;
+
+        document.getElementById("nota3").value =
+            aluno.nota3;
+
+        document.getElementById("nota4").value =
+            aluno.nota4;
+
+
+        indiceEdicao = indice;
+
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+
+    function excluirAluno(indice) {
+
+        if (confirm("Deseja realmente excluir este aluno?")) {
+
+            alunos.splice(indice, 1);
+
+            atualizarTabela();
+
+        }
+
+    }
+
+
+    function limparCampos() {
+
+        document.getElementById("aluno").value = "";
+
+        document.getElementById("nota1").value = "";
+
+        document.getElementById("nota2").value = "";
+
+        document.getElementById("nota3").value = "";
+
+        document.getElementById("nota4").value = "";
+
+
+        // Mantém a data atual
+        const hoje = new Date();
+
+        const ano = hoje.getFullYear();
+
+        const mes =
+            String(hoje.getMonth() + 1).padStart(2, "0");
+
+        const dia =
+            String(hoje.getDate()).padStart(2, "0");
+
+        document.getElementById("data").value =
+            `${ano}-${mes}-${dia}`;
+
+
+        indiceEdicao = -1;
+
+
+        document.getElementById("aluno").focus();
+
+    }
+
+
+    function atualizarResumo() {
+
+        document.getElementById("totalAlunos").textContent =
+            alunos.length;
+
+
+        const aprovados = alunos.filter(
+
+            aluno =>
+                aluno.situacao === "Aprovado"
+
+        ).length;
+
+
+        const recuperacao = alunos.filter(
+
+            aluno =>
+                aluno.situacao === "Recuperação"
+
+        ).length;
+
+
+        const reprovados = alunos.filter(
+
+            aluno =>
+                aluno.situacao === "Reprovado"
+
+        ).length;
+
+
+        document.getElementById("totalAprovados").textContent =
+            aprovados;
+
+
+        document.getElementById("totalRecuperacao").textContent =
+            recuperacao;
+
+
+        document.getElementById("totalReprovados").textContent =
+            reprovados;
+
+    }
+
+</script>
+
+</body>
+</html>
+```

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestão de Notas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+        <img src="imgNotas1.jpg" alt="Logo do Sistema">
+      <h1>Sistema de Gestão de Notas</h1>
+      <p>Média para aprovação: <strong>7.0</strong></p>
+      <p>Responsável: <strong>Prof. Francisco Cisco</strong></p>
+    </header>
+
+    <!-- Painel de Resumo / Estatísticas -->
+    <div class="painel-estatisticas">
+      <div class="card-estatistica total">
+        <span class="rotulo">Total de Alunos</span>
+        <span id="qtd-total" class="valor">0</span>
+      </div>
+      <div class="card-estatistica aprovados">
+        <span class="rotulo">Aprovados</span>
+        <span id="qtd-aprovados" class="valor">0</span>
+      </div>
+      <div class="card-estatistica reprovados">
+        <span class="rotulo">Reprovados</span>
+        <span id="qtd-reprovados" class="valor">0</span>
+      </div>
+    </div>
+
+    <!-- Painel de Botões / Ações -->
+    <div class="painel-acoes">
+      <button id="btn-editar" class="btn btn-warning">✏️ Modificar Notas</button>
+      <button id="btn-salvar" class="btn btn-success">💾 Salvar Alterações</button>
+      <button id="btn-imprimir" class="btn btn-primary">🖨️ Imprimir Aprovados</button>
+    </div>
+
+    <!-- Mensagem de confirmação ao salvar -->
+    <div id="mensagem-status" class="mensagem hidden"></div>
+
+    <!-- Tabela de Alunos -->
+    <table class="tabela-alunos">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nome do Aluno</th>
+          <th>Nota</th>
+          <th>Situação</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-corpo">
+        <!-- Linhas geradas dinamicamente via JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

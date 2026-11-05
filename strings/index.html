@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplo e Destaque de Strings no JS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Trabalhando com Strings em JavaScript</h1>
+
+    <!-- Seção 1: Exemplos de declaração de Strings -->
+    <section class="card">
+      <h2>1. Formas de Declarar Strings</h2>
+      <div id="exemplos-strings"></div>
+    </section>
+
+    <!-- Seção 2: Ferramenta de Destaque -->
+    <section class="card">
+      <h2>2. Destacar Palavra em uma String</h2>
+      <p id="texto-original">
+        O JavaScript é uma linguagem incrível. Com JavaScript podemos manipular textos e criar páginas dinâmicas!
+      </p>
+
+      <div class="busca-box">
+        <input type="text" id="input-busca" placeholder="Digite uma palavra para destacar...">
+        <button onclick="destacarTexto()">Destacar</button>
+      </div>
+
+      <h3>Resultado:</h3>
+      <p id="texto-resultado" class="resultado-box"></p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

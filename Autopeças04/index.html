@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoPeças Express - Controle de Vendas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>⚙️ AutoPeças Express</h1>
+    <p>Sistema de Controle de Vendas</p>
+  </header>
+
+  <main class="container">
+
+    <section class="card area-formulario">
+      <h2>Realizar Venda</h2>
+
+      <form id="form-venda">
+
+        <div class="form-group">
+          <label for="marca">Marca do Veículo:</label>
+          <select id="marca" required>
+            <option value="">Selecione uma marca</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Fiat">Fiat</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Renault">Renault</option>
+            <option value="Ford">Ford</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="peca">Peça:</label>
+          <select id="peca" required disabled>
+            <option value="">Selecione a marca primeiro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="preco-unitario">Preço Unitário:</label>
+          <input type="text" id="preco-unitario"
+                 value="R$ 0,00" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="quantidade">Quantidade:</label>
+          <input type="number" id="quantidade"
+                 min="1" step="1" value="1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="forma-pagamento">Forma de Pagamento:</label>
+          <select id="forma-pagamento" required>
+            <option value="">Selecione o pagamento</option>
+            <option value="PIX">PIX</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de Débito">Cartão de Débito</option>
+            <option value="Cartão de Crédito à vista">
+              Cartão de Crédito à vista
+            </option>
+            <option value="Cartão de Crédito 3x sem juros">
+              Cartão de Crédito 3x sem juros
+            </option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-principal">
+          ➕ Adicionar à Venda
+        </button>
+
+      </form>
+    </section>
+
+    <section class="card area-relatorio">
+      <h2>Vendas Registradas</h2>
+
+      <div class="table-responsive">
+        <table id="tabela-vendas">
+          <thead>
+            <tr>
+              <th>Nº</th>
+              <th>Data/Hora</th>
+              <th>Marca</th>
+              <th>Peça</th>
+              <th>Qtd.</th>
+              <th>Pagamento</th>
+              <th>Preço Un.</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-vendas"></tbody>
+        </table>
+      </div>
+
+      <div class="total-geral">
+        <h3>Total Geral: <span id="total-vendas">R$ 0,00</span></h3>
+        <p id="quantidade-vendas">Vendas: 0</p>
+      </div>
+
+      <div class="acoes-relatorio">
+        <button type="button" id="btn-salvar">
+          💾 Salvar Vendas
+        </button>
+
+        <button type="button" id="btn-imprimir">
+          🖨️ Imprimir / Salvar PDF
+        </button>
+
+        <button type="button" id="btn-exportar">
+          📊 Exportar CSV
+        </button>
+      </div>
+
+      <p class="aviso">
+        Salve as vendas para manter os registros no navegador.
+      </p>
+
+      <p id="mensagem" role="status"></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>AutoPeças Express © 2026 - Sistema de Controle de Vendas</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

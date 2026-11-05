@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to top, #183a68, #78a4dd, #ffffff);/*Fundo em degradê com 3 cores */
+    color: #333;
+}
+
+.container {
+    width: 95%;
+    max-width: 1100px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+/* CABEÇALHO */
+
+header {
+    background: #1d4ed8;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    font-size: 30px;
+    margin-bottom: 5px;
+    
+}
+
+header p {
+    font-size: 17px;
+ 
+}
+
+/* ÁREAS */
+
+.dados-venda,
+.produtos,
+.carrinho {
+    padding: 25px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #1d4ed8;
+}
+
+/* CAMPOS */
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.campo label {
+    font-weight: bold;
+}
+
+input,
+select {
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #1d4ed8;
+}
+
+/* DATA */
+
+.dados-venda {
+    border-bottom: 1px solid #ddd;
+}
+
+/* PRODUTO */
+
+.form-produto {
+    display: grid;
+    grid-template-columns: 1fr 150px 150px;
+    gap: 15px;
+    align-items: end;
+}
+
+.btn-adicionar {
+    height: 44px;
+    border: none;
+    border-radius: 6px;
+    background: #16a34a;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-adicionar:hover {
+    background: #15803d;
+}
+
+/* TABELA */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #1d4ed8;
+    color: white;
+}
+
+th,
+td {
+    padding: 13px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background: #f5f5f5;
+}
+
+/* BOTÃO REMOVER */
+
+.btn-remover {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-remover:hover {
+    background: #b91c1c;
+}
+
+/* TOTAL */
+
+.total {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    font-size: 22px;
+}
+
+#totalVenda {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* BOTÕES */
+
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 25px;
+    border-top: 1px solid #ddd;
+}
+
+.acoes button {
+    padding: 13px 22px;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-salvar {
+    background: #16a34a;
+}
+
+.btn-imprimir {
+    background: #2563eb;
+}
+
+.btn-nova {
+    background: #64748b;
+}
+
+.acoes button:hover {
+    opacity: 0.85;
+}
+
+/* RODAPÉ */
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #e5e7eb;
+    color: #555;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
+
+    .form-produto {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 8px 4px;
+    }
+
+    .acoes {
+        flex-direction: column;
+    }
+
+    .total {
+        font-size: 18px;
+    }
+}

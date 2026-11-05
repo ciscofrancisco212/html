@@ -1,0 +1,68 @@
+/* Configurações Globais */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  padding: 20px;
+  margin: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.busca-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.resultado-box {
+  padding: 10px;
+  background-color: #eef2f5;
+  border-left: 4px solid #3498db;
+  border-radius: 4px;
+  min-height: 24px;
+}
+
+/* CLASSE DE DESTAQUE (Usada pelo JavaScript) */
+.highlight {
+  background-color: #f1c40f;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 3px;
+}

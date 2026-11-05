@@ -1,0 +1,198 @@
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef2f7;
+    color: #253247;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #101b35, #0866c6);
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    margin-bottom: 0;
+    color: #dbeafe;
+}
+
+nav {
+    background: #12213d;
+    padding: 14px;
+    text-align: center;
+}
+
+nav a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin: 5px 14px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #64c7ff;
+}
+
+main {
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 0 18px;
+}
+
+section {
+    margin-bottom: 28px;
+}
+
+.introducao,
+.painel,
+#comparacao {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #17255412;
+}
+
+h2 {
+    color: #0759a8;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin: 16px 0 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #aab8cc;
+    border-radius: 7px;
+    background: white;
+    font-size: 16px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: #0874d1;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #064f97;
+}
+
+.resultado {
+    margin-top: 22px;
+    padding: 20px;
+    background: #eaf4ff;
+    border-left: 5px solid #0874d1;
+    border-radius: 8px;
+}
+
+.resultado h3 {
+    color: #0759a8;
+    margin-top: 0;
+}
+
+.resultado ul {
+    padding-left: 22px;
+}
+
+.nivel {
+    font-weight: bold;
+    color: #0759a8;
+}
+
+.aviso {
+    background: #fff5d9;
+    border-left: 4px solid #e3a008;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.tabela-responsiva {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    min-width: 580px;
+}
+
+th {
+    background: #12345b;
+    color: white;
+}
+
+th, td {
+    padding: 13px;
+    border: 1px solid #d5deea;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background: #f0f6fc;
+}
+
+tbody tr:hover {
+    background: #dceeff;
+}
+
+footer {
+    background: #12213d;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 35px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 23px;
+    }
+
+    nav a {
+        margin: 5px 8px;
+    }
+
+    .introducao,
+    .painel,
+    #comparacao {
+        padding: 17px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

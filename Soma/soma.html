@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma Simples</title>
+    <!-- Vinculando o arquivo CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Calculadora de Soma</h2>
+        
+        <div class="input-group">
+            <input type="number" id="numero1" placeholder="Digite o primeiro número">
+            <span>+</span>
+            <input type="number" id="numero2" placeholder="Digite o segundo número">
+        </div>
+
+        <button onclick="somar()">Somar</button>
+
+        <div class="resultado">
+            Resultado: <span id="resultado">0</span>
+            <!--span serve para agrupar textos ou partes de um texto para aplicar estilos (CSS) ou comportamentos (JavaScript) sem quebrar a linha nem alterar a estrutura do documento por padrão. -->
+        </div>
+    </div>
+
+    <!-- Vinculando o arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

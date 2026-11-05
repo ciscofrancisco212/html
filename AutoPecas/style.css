@@ -1,0 +1,126 @@
+/* Configurações Gerais */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f7f6;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #1a252f;
+  color: #ffffff;
+  text-align: center;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* Estilo dos Cards */
+.card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 0.5rem;
+}
+
+/* Formulários */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+select, input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+select:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+button {
+  width: 100%;
+  background-color: #063f1edf;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #5c67de;
+}
+
+/* Tabela de Vendas */
+.table-responsive {
+  overflow-x: auto;
+  max-height: 300px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+table th, table td {
+  padding: 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+table th {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+}
+
+.total-geral {
+  margin-top: 1.5rem;
+  text-align: right;
+  background-color: #d8dfddef;
+  padding: 0.8rem;
+  border-radius: 4px;
+  color: #3162e8;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="heart.ico" type="image/x-icon">
+
+    <title>Classificador de Pressão Arterial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card">
+        <h2>Verificador de Pressão Arterial</h2>
+        <p class="subtitle">Insira os valores medidos em mmHg para analisar o resultado.</p>
+
+        <form id="bpForm">
+            <div class="input-group">
+                <label for="systolic">Pressão Sistólica (Máxima):</label>
+                <input type="number" id="systolic" placeholder="Ex: 115" min="50" max="300" required>
+            </div>
+
+            <div class="input-group">
+                <label for="diastolic">Pressão Diastólica (Mínima):</label>
+                <input type="number" id="diastolic" placeholder="Ex: 75" min="30" max="200" required>
+            </div>
+
+            <button type="submit">Classificar Pressão</button>
+
+            <footer>
+            <p>Ferramenta educativa. Não substitui avaliação médica.</p>
+            <img src="heart3.jpg" alt="Pressão Arterial">
+        </footer>
+        </form>
+
+        <div id="result" class="result-box hidden">
+            <h3 id="statusTitle">--</h3>
+            <p id="statusDescription">--</p>
+
+            
+        </div>
+    
+    
+    <script src="script.js"></script>
+    
+</body>
+</html>

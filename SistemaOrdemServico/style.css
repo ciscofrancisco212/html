@@ -1,0 +1,268 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #121d27;
+    color: #070707;
+}
+
+header {
+    background: linear-gradient(120deg, #051d3d, #0879bd);
+    color: white;
+    text-align: center;
+    padding: 24px 12px;
+}
+
+header h1 {
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+header p {
+    margin-bottom: 0;
+}
+
+main {
+    width: 95%;
+    max-width: 1450px;
+    margin: 25px auto;
+}
+
+.painel {
+    background: white;
+    padding: 24px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px #152d4512;
+}
+
+h2 {
+    color: #135b91;
+    margin-top: 0;
+    border-bottom: 2px solid #e0eaf3;
+    padding-bottom: 12px;
+}
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.grade > div {
+    min-width: 0;
+}
+
+.completo {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font: inherit;
+    background: #fff;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid #80bfff;
+    border-color: #0879bd;
+}
+
+input[readonly] {
+    background: #e9f1f8;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+    resize: vertical;
+}
+
+.botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+button {
+    border: none;
+    padding: 11px 16px;
+    border-radius: 6px;
+    background: #0879bd;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(.9);
+}
+
+#btnNovo {
+    background: #64748b;
+}
+
+#btnImprimir {
+    background: #16834b;
+}
+
+#btnExportar {
+    background: #7255a5;
+}
+
+#btnImportar {
+    background: #b66a19;
+}
+
+#mensagem {
+    font-weight: bold;
+    color: #0879bd;
+}
+
+.pesquisa {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.resumo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 14px;
+    background: #e7f2fc;
+    border-radius: 8px;
+    margin-bottom: 18px;
+}
+
+.tabela {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #e0e6ed;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th {
+    background: #174b75;
+    color: white;
+}
+
+tbody tr:hover {
+    background: #f0f7fc;
+}
+
+.acoes {
+    display: flex;
+    gap: 5px;
+}
+
+.acoes button {
+    padding: 7px 9px;
+    font-size: 12px;
+}
+
+.btnEditar {
+    background: #0879bd;
+}
+
+.btnExcluir {
+    background: #c63737;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+@media (max-width: 650px) {
+    .grade, .pesquisa {
+        grid-template-columns: 1fr;
+    }
+
+    .painel {
+        padding: 15px;
+    }
+
+    .completo {
+        grid-column: auto;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    header {
+        background: white;
+        color: black;
+        border-bottom: 2px solid black;
+    }
+
+    main {
+        width: 100%;
+        margin: 0;
+    }
+
+    .painel {
+        box-shadow: none;
+        padding: 10px 0;
+    }
+
+    .painel:nth-of-type(2),
+    .botoes,
+    footer,
+    #mensagem {
+        display: none !important;
+    }
+
+    input, select, textarea {
+        border: none;
+        padding: 3px 0;
+        color: black;
+        background: white;
+        appearance: none;
+    }
+
+    textarea {
+        min-height: 35px;
+    }
+
+    h2 {
+        color: black;
+    }
+
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
+}

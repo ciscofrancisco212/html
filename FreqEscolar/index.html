@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Chamada Escolar - Análise de Sistemas</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Dashboard de Métricas */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-stat {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .card-stat span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-stat strong {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+        }
+
+        /* Formulário e Tabela */
+        .form-section, .table-section {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-row input[type="text"] {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-row input[type="text"]:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge-presente {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-ausente {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .btn-status {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background-color: #f8fafc;
+            cursor: pointer;
+        }
+
+        .btn-status:hover {
+            background-color: #e2e8f0;
+        }
+
+        .btn-delete {
+            background-color: transparent;
+            color: var(--danger);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+
+        .actions-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Sistema de Controle de Frequência</h1>
+            <p>Disciplina: Análise e Projeto de Sistemas | Protótipo Educacional</p>
+        </header>
+
+        <!-- Indicadores / Métricas (Resultado de Requisitos/Regras de Negócio) -->
+        <div class="dashboard-grid">
+            <div class="card-stat">
+                <span>Total de Alunos</span>
+                <strong id="total-alunos">0</strong>
+            </div>
+            <div class="card-stat">
+                <span>Presentes</span>
+                <strong id="total-presentes" style="color: var(--success);">0</strong>
+            </div>
+            <div class="card-stat">
+                <span>Ausentes</span>
+                <strong id="total-ausentes" style="color: var(--danger);">0</strong>
+            </div>
+            <div class="card-stat">
+                <span>Taxa de Frequência</span>
+                <strong id="taxa-frequencia">0%</strong>
+            </div>
+        </div>
+
+        <!-- RF-001: Cadastrar Aluno -->
+        <div class="form-section">
+            <h2 style="font-size: 1.1rem; margin-bottom: 12px;">Cadastrar Novo Aluno</h2>
+            <form id="form-aluno" class="form-row">
+                <input type="text" id="nome-aluno" placeholder="Digite o nome do aluno..." required>
+                <button type="submit" class="btn btn-primary">Adicionar Aluno</button>
+            </form>
+        </div>
+
+        <!-- RF-002 & RF-003: Listar e Alterar Frequência -->
+        <div class="table-section">
+            <h2 style="font-size: 1.1rem; margin-bottom: 12px;">Diário de Classe</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome do Aluno</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-alunos">
+                    <!-- Linhas geradas dinamicamente via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. MODELO DE DADOS & ESTADO DO SISTEMA ---
+        // Exemplo de Array de Objetos para associar aos conceitos de Entidade/Atributo
+        let alunos = JSON.parse(localStorage.getItem('alunos_db')) || [
+            { id: 1, nome: "Ana Silva", presente: true },
+            { id: 2, nome: "Carlos Souza", presente: false },
+            { id: 3, nome: "Beatriz Lima", presente: true }
+        ];
+
+        // --- 2. MAPEAMENTO DO DOM ---
+        const formAluno = document.getElementById('form-aluno');
+        const inputNome = document.getElementById('nome-aluno');
+        const tabelaAlunos = document.getElementById('tabela-alunos');
+        
+        const elTotal = document.getElementById('total-alunos');
+        const elPresentes = document.getElementById('total-presentes');
+        const elAusentes = document.getElementById('total-ausentes');
+        const elTaxa = document.getElementById('taxa-frequencia');
+
+        // --- 3. REGRAS DE NEGÓCIO & MANIPULAÇÃO DO ESTADO ---
+
+        // RN-001: Persistência de Dados
+        function salvarDados() {
+            localStorage.setItem('alunos_db', JSON.stringify(alunos));
+            atualizarInterface();
+        }
+
+        // RN-002: Alternar Status de Presença
+        function alternarPresenca(id) {
+            alunos = alunos.map(aluno => {
+                if (aluno.id === id) {
+                    return { ...aluno, presente: !aluno.presente };
+                }
+                return aluno;
+            });
+            salvarDados();
+        }
+
+        // RN-003: Inclusão de Aluno
+        function adicionarAluno(nome) {
+            const novoAluno = {
+                id: Date.now(),
+                nome: nome,
+                presente: true // Novo aluno inicia por padrão como presente
+            };
+            alunos.push(novoAluno);
+            salvarDados();
+        }
+
+        // RN-004: Exclusão de Aluno
+        function removerAluno(id) {
+            alunos = alunos.filter(aluno => aluno.id !== id);
+            salvarDados();
+        }
+
+        // --- 4. RENDERIZAÇÃO DA INTERFACE ---
+        function atualizarInterface() {
+            tabelaAlunos.innerHTML = '';
+            let totalPresentes = 0;
+
+            if (alunos.length === 0) {
+                tabelaAlunos.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#94a3b8;">Nenhum aluno cadastrado.</td></tr>`;
+            } else {
+                alunos.forEach(aluno => {
+                    if (aluno.presente) totalPresentes++;
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>#${aluno.id.toString().slice(-4)}</td>
+                        <td><strong>${aluno.nome}</strong></td>
+                        <td>
+                            <span class="status-badge ${aluno.presente ? 'badge-presente' : 'badge-ausente'}">
+                                ${aluno.presente ? 'Presente' : 'Ausente'}
+                            </span>
+                        </td>
+                        <td class="actions-cell">
+                            <button class="btn-status" onclick="alternarPresenca(${aluno.id})">
+                                Alternar Frequência
+                            </button>
+                            <button class="btn-delete" onclick="removerAluno(${aluno.id})" title="Excluir Aluno">&times;</button>
+                        </td>
+                    `;
+                    tabelaAlunos.appendChild(tr);
+                });
+            }
+
+            // Cálculo das estatísticas da turma (Regra de Negócio de Relatórios)
+            const total = alunos.length;
+            const totalAusentes = total - totalPresentes;
+            const taxa = total > 0 ? Math.round((totalPresentes / total) * 100) : 0;
+
+            elTotal.textContent = total;
+            elPresentes.textContent = totalPresentes;
+            elAusentes.textContent = totalAusentes;
+            elTaxa.textContent = `${taxa}%`;
+        }
+
+        // --- 5. EVENTOS ---
+        formAluno.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nome = inputNome.value.trim();
+            if (nome) {
+                adicionarAluno(nome);
+                inputNome.value = '';
+            }
+        });
+
+        // Inicialização do aplicativo
+        atualizarInterface();
+    </script>
+</body>
+</html>

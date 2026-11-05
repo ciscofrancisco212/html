@@ -1,0 +1,13 @@
+body{
+    background-color: #9d9ec7eb;
+    font-family: 'Poppins', sans-serif;
+}
+header{
+    background-color: #28367ee8;
+    margin-left: auto;  /*Caixa com contéudo da <Div class= "conteúdo"    */
+    margin-right: auto;
+    width: 400px;
+    color: white;
+    text-align: center;
+
+}

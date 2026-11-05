@@ -1,0 +1,35 @@
+/* Remove margens padrão e garante que a página ocupe 100% da altura da tela */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    
+    /* Configuração do fundo em degradê */
+    background: linear-gradient(85deg, #10b2b7 0%, #050009 100%);
+}
+
+/* Estilização opcional para o conteúdo central */
+.cartao {
+    background-color: rgba(246, 196, 120, 0.9);
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(238, 7, 7, 0.952);
+}
+
+.cartao h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.cartao p {
+    color: #666;
+}

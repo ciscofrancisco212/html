@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque - Óleos Lubrificantes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topo">
+    <div>
+        <h1>🛢️ AutoLub</h1>
+        <p>Sistema de Controle de Estoque de Lubrificantes</p>
+    </div>
+    <div class="data-atual" id="dataAtual"></div>
+</header>
+
+<main class="container">
+
+    <section class="indicadores">
+        <div class="card azul">
+            <span>Produtos cadastrados</span>
+            <h2 id="totalProdutos">0</h2>
+        </div>
+
+        <div class="card verde">
+            <span>Unidades em estoque</span>
+            <h2 id="totalUnidades">0</h2>
+        </div>
+
+        <div class="card laranja">
+            <span>Estoque baixo</span>
+            <h2 id="estoqueBaixo">0</h2>
+        </div>
+
+        <div class="card roxo">
+            <span>Valor do estoque</span>
+            <h2 id="valorEstoque">R$ 0,00</h2>
+        </div>
+    </section>
+
+    <section class="painel">
+        <h2>📦 Registrar movimentação</h2>
+
+        <form id="formMovimentacao">
+            <div class="campos">
+                <div class="campo">
+                    <label for="produto">Produto</label>
+                    <select id="produto" required></select>
+                </div>
+
+                <div class="campo">
+                    <label for="tipo">Tipo de movimentação</label>
+                    <select id="tipo" required>
+                        <option value="entrada">Entrada no estoque</option>
+                        <option value="saida">Saída / Venda</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="quantidade">Quantidade (unidades)</label>
+                    <input type="number" id="quantidade"
+                           min="1" step="1" required>
+                </div>
+
+                <div class="campo">
+                    <label for="dataMovimento">Data</label>
+                    <input type="date" id="dataMovimento" required>
+                </div>
+            </div>
+
+            <button type="submit" class="botao primario">
+                Registrar movimentação
+            </button>
+        </form>
+    </section>
+
+    <section class="painel">
+        <div class="cabecalho-tabela">
+            <h2>📋 Estoque de produtos</h2>
+            <div class="acoes">
+                <input type="search" id="pesquisa"
+                       placeholder="Pesquisar óleo...">
+                <button class="botao imprimir" id="btnImprimir">
+                    🖨 Imprimir relatório
+                </button>
+            </div>
+        </div>
+
+        <div class="tabela-responsiva">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Óleo lubrificante</th>
+                        <th>Viscosidade</th>
+                        <th>Em estoque</th>
+                        <th>Estoque mínimo</th>
+                        <th>Preço unitário</th>
+                        <th>Valor total</th>
+                        <th>Situação</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaEstoque"></tbody>
+            </table>
+        </div>
+
+        <p class="observacao">
+            Os preços e as quantidades iniciais são fictícios.
+            Ajuste-os conforme os dados reais da sua empresa.
+        </p>
+    </section>
+
+    <section class="painel">
+        <h2>🕒 Histórico de movimentações</h2>
+
+        <div class="tabela-responsiva">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Produto</th>
+                        <th>Movimentação</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody id="historico"></tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    AutoLub © 2026 — Controle de Estoque de Lubrificantes
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Ordem de Serviço - Informática</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🖥️ FN - CISCO </h1>
+    <p>Sistema de Assistência Técnica de PCs e Notebooks</p>
+</header>
+
+<main>
+    <section class="painel">
+        <h2>Nova Ordem de Serviço</h2>
+
+        <form id="formOS">
+            <div class="grade">
+                <div>
+                    <label>Número da OS</label>
+                    <input id="numero" readonly>
+                </div>
+                <div>
+                    <label>Data de entrada</label>
+                    <input type="date" id="data" required>
+                </div>
+                <div>
+                    <label>Nome do cliente</label>
+                    <input id="cliente" required placeholder="Nome completo">
+                </div>
+                <div>
+                    <label>Telefone / WhatsApp</label>
+                    <input id="telefone" placeholder="(11) 99999-9999">
+                </div>
+                <div>
+                    <label>Tipo de equipamento</label>
+                    <select id="tipo" required>
+                        <option value="">Selecione</option>
+                        <option>Computador Desktop</option>
+                        <option>Notebook</option>
+                        <option>All-in-One</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Marca / Modelo</label>
+                    <input id="modelo" placeholder="Ex.: Dell Inspiron">
+                </div>
+                <div>
+                    <label>Número de série</label>
+                    <input id="serie">
+                </div>
+                <div>
+                    <label>Processador</label>
+                    <input id="processador" placeholder="Ex.: Intel Core i5">
+                </div>
+                <div>
+                    <label>Memória RAM</label>
+                    <input id="ram" placeholder="Ex.: 8 GB">
+                </div>
+                <div>
+                    <label>Armazenamento</label>
+                    <input id="armazenamento" placeholder="Ex.: SSD 480 GB">
+                </div>
+                <div class="completo">
+                    <label>Defeito relatado pelo cliente</label>
+                    <textarea id="defeito" required
+                        placeholder="Descreva o problema informado..."></textarea>
+                </div>
+                <div class="completo">
+                    <label>Diagnóstico técnico</label>
+                    <textarea id="diagnostico"
+                        placeholder="Causa identificada..."></textarea>
+                </div>
+                <div class="completo">
+                    <label>Serviços executados</label>
+                    <textarea id="servicos"
+                        placeholder="Ex.: limpeza, formatação, troca de SSD..."></textarea>
+                </div>
+                <div class="completo">
+                    <label>Peças / acessórios recebidos</label>
+                    <input id="acessorios"
+                        placeholder="Ex.: carregador, fonte, mouse">
+                </div>
+                <div>
+                    <label>Valor da mão de obra (R$)</label>
+                    <input type="number" id="maoObra" min="0" step="0.01" value="0">
+                </div>
+                <div>
+                    <label>Valor das peças (R$)</label>
+                    <input type="number" id="pecas" min="0" step="0.01" value="0">
+                </div>
+                <div>
+                    <label>Desconto (R$)</label>
+                    <input type="number" id="desconto" min="0" step="0.01" value="0">
+                </div>
+                <div>
+                    <label>Valor total (R$)</label>
+                    <input id="total" readonly value="0,00">
+                </div>
+                <div>
+                    <label>Status da OS</label>
+                    <select id="status">
+                        <option>Recebido</option>
+                        <option>Em diagnóstico</option>
+                        <option>Aguardando aprovação</option>
+                        <option>Aguardando peças</option>
+                        <option>Em manutenção</option>
+                        <option>Concluído</option>
+                        <option>Entregue</option>
+                        <option>Cancelado</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Forma de pagamento</label>
+                    <select id="pagamento">
+                        <option>Não definido</option>
+                        <option>Dinheiro</option>
+                        <option>PIX</option>
+                        <option>Cartão de débito</option>
+                        <option>Cartão de crédito</option>
+                        <option>Transferência bancária</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Situação do pagamento</label>
+                    <select id="situacaoPagamento">
+                        <option>Pendente</option>
+                        <option>Parcial</option>
+                        <option>Pago</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Previsão de entrega</label>
+                    <input type="date" id="previsao">
+                </div>
+                <div class="completo">
+                    <label>Observações</label>
+                    <textarea id="observacoes"></textarea>
+                </div>
+            </div>
+
+            <div class="botoes">
+                <button type="submit" id="btnSalvar">Salvar OS</button>
+                <button type="button" id="btnNovo">Nova OS</button>
+                <button type="button" id="btnImprimir">Imprimir OS</button>
+                <button type="button" id="btnExportar">Exportar backup</button>
+                <button type="button" id="btnImportar">Importar backup</button>
+                <input type="file" id="arquivoBackup"
+                    accept=".json,application/json" hidden>
+            </div>
+            <p id="mensagem" role="status"></p>
+        </form>
+    </section>
+
+    <section class="painel">
+        <h2>Ordens de Serviço Cadastradas</h2>
+
+        <div class="pesquisa">
+            <input id="busca"
+                placeholder="Pesquisar por OS, cliente, telefone ou equipamento...">
+            <select id="filtroStatus">
+                <option value="">Todos os status</option>
+                <option>Recebido</option>
+                <option>Em diagnóstico</option>
+                <option>Aguardando aprovação</option>
+                <option>Aguardando peças</option>
+                <option>Em manutenção</option>
+                <option>Concluído</option>
+                <option>Entregue</option>
+                <option>Cancelado</option>
+            </select>
+        </div>
+
+        <div class="resumo">
+            <div>Ordens cadastradas: <strong id="qtdOS">0</strong></div>
+            <div>Valor total das OS: <strong id="valorOS">R$ 0,00</strong></div>
+        </div>
+
+        <div class="tabela">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nº OS</th>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Equipamento</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="listaOS"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Sistema de Ordem de Serviço • Assistência Técnica de Informática
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
